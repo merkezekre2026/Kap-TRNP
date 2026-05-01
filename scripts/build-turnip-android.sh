@@ -93,6 +93,8 @@ meson setup "$BUILD_DIR" "$MESA_DIR" \
   --prefix "$INSTALL_DIR" \
   --libdir lib \
   --buildtype release \
+  -Dandroid-stub=true \
+  -Dplatform-sdk-version="$ANDROID_API" \
   -Dplatforms=android \
   -Dvulkan-drivers=freedreno \
   -Dgallium-drivers= \
