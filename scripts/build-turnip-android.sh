@@ -90,6 +90,7 @@ rm -rf "$BUILD_DIR" "$INSTALL_DIR"
 
 meson setup "$BUILD_DIR" "$MESA_DIR" \
   --cross-file "$CROSS_FILE" \
+  --wrap-mode nofallback \
   --prefix "$INSTALL_DIR" \
   --libdir lib \
   --buildtype release \
