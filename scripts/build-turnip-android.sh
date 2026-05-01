@@ -9,6 +9,7 @@ WORK_DIR="${WORK_DIR:-$PWD/work}"
 MESA_DIR="${MESA_DIR:-$WORK_DIR/mesa}"
 BUILD_DIR="${BUILD_DIR:-$WORK_DIR/build-android}"
 INSTALL_DIR="${INSTALL_DIR:-$WORK_DIR/install-android}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ADRENOTOOLS_NAME="${ADRENOTOOLS_NAME:-Mesa Turnip driver}"
 ADRENOTOOLS_DESCRIPTION="${ADRENOTOOLS_DESCRIPTION:-Compiled from Mesa source}"
 ADRENOTOOLS_AUTHOR="${ADRENOTOOLS_AUTHOR:-Kap-TRNP}"
@@ -67,6 +68,8 @@ else
   git -C "$MESA_DIR" fetch --depth 1 origin "$MESA_REF"
   git -C "$MESA_DIR" checkout FETCH_HEAD
 fi
+
+(cd "$MESA_DIR" && python3 "$SCRIPT_DIR/add_710_720_722.py")
 
 cat > "$CROSS_FILE" <<EOF
 [binaries]

@@ -29,9 +29,16 @@ The workflow currently targets:
 - Android API: `26` by default
 - Mesa Vulkan driver: `freedreno`
 - Freedreno backend: `kgsl`
+- Additional GPU entries: Adreno 710, 720, and 722
 - Output package: `turnip-adrenotools-arm64-v8a.zip`
 
 OpenGL/GLES is intentionally disabled. This repository builds Turnip only.
+
+## Mesa Patch
+
+During each build, the workflow clones Mesa and then runs `scripts/add_710_720_722.py` inside the Mesa source tree before Meson configuration.
+
+The patch updates `src/freedreno/common/freedreno_devices.py` idempotently to add Adreno 710, 720, and 722 GPU entries.
 
 ## Manual Workflow Run
 
