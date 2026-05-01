@@ -98,6 +98,7 @@ meson setup "$BUILD_DIR" "$MESA_DIR" \
   -Dplatform-sdk-version="$ANDROID_API" \
   -Dplatforms=android \
   -Dvulkan-drivers=freedreno \
+  -Dfreedreno-kmds=kgsl \
   -Dgallium-drivers= \
   -Dllvm=disabled \
   -Dshared-llvm=disabled \
