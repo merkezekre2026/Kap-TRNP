@@ -110,6 +110,7 @@ meson setup "$BUILD_DIR" "$MESA_DIR" \
   -Dshared-glapi=disabled \
   -Dvalgrind=disabled \
   -Dlibunwind=disabled \
+  -Dzstd=disabled \
   -Dbuild-tests=false
 
 ninja -C "$BUILD_DIR"
