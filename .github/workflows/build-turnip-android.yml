@@ -18,6 +18,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Turnip for Android arm64
@@ -71,3 +74,20 @@ jobs:
             work/artifacts/libvulkan_freedreno.so
             work/artifacts/turnip-adrenotools-arm64-v8a.zip
           if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: turnip-${{ github.run_number }}
+          name: Turnip Android ${{ github.run_number }}
+          body: |
+            Automated Mesa Turnip Android build.
+
+            Mesa ref: `${{ env.MESA_REF }}`
+            Android API: `${{ env.ANDROID_API }}`
+            ABI: `${{ env.ANDROID_ABI }}`
+
+            Use `turnip-adrenotools-arm64-v8a.zip` with AdrenoTools-compatible emulators or apps.
+          files: work/artifacts/turnip-adrenotools-arm64-v8a.zip
+          fail_on_unmatched_files: true
